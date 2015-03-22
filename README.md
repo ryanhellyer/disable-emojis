@@ -1,2 +1,0 @@
-# disable-emojis
-disable-emojis
