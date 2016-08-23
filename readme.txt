@@ -4,18 +4,19 @@ Tags: emojis
 Donate link: https://geek.hellyer.kiwi/donate/
 Requires at least: 4.2
 Tested up to: 4.7
-Stable tag: 1.5.1
+Stable tag: 1.5.2
 
 
-This plugin disables the new emoji functionality in WordPress 4.2.
+This plugin disables the new WordPress emoji functionality.
 
 
 == Description ==
 
-This plugin disables the new emoji functionality in WordPress 4.2.
+This plugin disables the new WordPress emoji functionality.
 
 
 Note: Emoticons will still work and emoji's will still work in browsers which have built in support for them. This plugin simply removes the extra code bloat used to add support for emoji's in older browswers.
+
 
 == Installation ==
 
@@ -29,6 +30,10 @@ Visit the <a href="https://geek.hellyer.kiwi/plugins/disable-emojis/">Disable Em
 
 
 == Changelog ==
+
+= 1.5.2 =
+* Improved documentation.
+* Removed redundant dns prefetching. Thanks to <a href="http://blog.milandinic.com/">Milan Dinic</a> for the pull request.
 
 = 1.5.1 =
 * Updating documentation.
