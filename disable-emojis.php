@@ -3,7 +3,7 @@
 Plugin Name: Disable Emojis
 Plugin URI: https://geek.hellyer.kiwi/plugins/disable-emojis/
 Description: Disable Emojis
-Version: 1.5.2
+Version: 1.5.3
 Author: Ryan Hellyer
 Author URI: https://geek.hellyer.kiwi/
 License: GPL2
@@ -68,7 +68,7 @@ function disable_emojis_tinymce( $plugins ) {
 function disable_emojis_remove_dns_prefetch( $urls, $relation_type ) {
 	if ( 'dns-prefetch' == $relation_type ) {
 		/** This filter is documented in wp-includes/formatting.php */
-		$emoji_svg_url = apply_filters( 'emoji_svg_url', 'https://s.w.org/images/core/emoji/2/svg/' );
+		$emoji_svg_url = apply_filters( 'emoji_svg_url', 'https://s.w.org/images/core/emoji/2.2.1/svg/' );
 
 		$urls = array_diff( $urls, array( $emoji_svg_url ) );
 	}

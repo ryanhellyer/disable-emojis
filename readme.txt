@@ -3,8 +3,8 @@ Contributors: ryanhellyer
 Tags: emojis
 Donate link: https://geek.hellyer.kiwi/donate/
 Requires at least: 4.2
-Tested up to: 4.7
-Stable tag: 1.5.2
+Tested up to: 4.8
+Stable tag: 1.5.3
 
 
 This plugin disables the new WordPress emoji functionality.
@@ -30,6 +30,9 @@ Visit the <a href="https://geek.hellyer.kiwi/plugins/disable-emojis/">Disable Em
 
 
 == Changelog ==
+
+= 1.5.3 =
+* Catering to new DNS prefetch URL in version 4.7 of core
 
 = 1.5.2 =
 * Improved documentation.
