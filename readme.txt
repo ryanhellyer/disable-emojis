@@ -32,7 +32,7 @@ Visit the <a href="https://geek.hellyer.kiwi/plugins/disable-emojis/">Disable Em
 == Changelog ==
 
 = 1.6 =
-* Removed DNS prefetch URL
+* Removed DNS prefetch URL. Props to Aaron Queen for assisting with this.
 
 = 1.5.3 =
 * Catering to new DNS prefetch URL in version 4.7 of core
