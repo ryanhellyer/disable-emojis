@@ -66,11 +66,17 @@ function disable_emojis_tinymce( $plugins ) {
  * @return array                 Difference betwen the two arrays.
  */
 function disable_emojis_remove_dns_prefetch( $urls, $relation_type ) {
-	if ( 'dns-prefetch' == $relation_type ) {
-		/** This filter is documented in wp-includes/formatting.php */
-		$emoji_svg_url = apply_filters( 'emoji_svg_url', __return_false );
 
-		$urls = array_diff( $urls, array( $emoji_svg_url ) );
+	if ( 'dns-prefetch' == $relation_type ) {
+
+		// Strip out any URLs referencing the WordPress.org emoji location
+		$emoji_svg_url_bit = 'https://s.w.org/images/core/emoji/';
+		foreach ( $urls as $key => $url ) {
+			if ( strpos( $url, $emoji_svg_url_bit ) !== false ) {
+				unset( $urls[$key] );
+			}
+		}
+
 	}
 
 	return $urls;
