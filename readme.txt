@@ -4,7 +4,7 @@ Tags: emojis
 Donate link: https://geek.hellyer.kiwi/donate/
 Requires at least: 4.8
 Tested up to: 4.9
-Stable tag: 1.5.4
+Stable tag: 1.7
 
 
 This plugin disables the new WordPress emoji functionality.
@@ -30,6 +30,10 @@ Visit the <a href="https://geek.hellyer.kiwi/plugins/disable-emojis/">Disable Em
 
 
 == Changelog ==
+
+= 1.7 =
+* Removed DNS prefetch URL again.
+* This time using simple string check rather than relying on internal WordPress filters.
 
 = 1.6 =
 * Removed DNS prefetch URL. Props to Aaron Queen for assisting with this.
