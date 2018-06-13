@@ -1,4 +1,4 @@
-=== Disable Emojis ===
+=== Disable Emojis (GPDR friendly) ===
 Contributors: ryanhellyer
 Tags: emojis
 Donate link: https://geek.hellyer.kiwi/donate/
@@ -7,12 +7,12 @@ Tested up to: 4.9
 Stable tag: 1.7
 
 
-This plugin disables the new WordPress emoji functionality.
+This plugin disables the new WordPress emoji functionality. GPDR friendly.
 
 
 == Description ==
 
-This plugin disables the new WordPress emoji functionality.
+This plugin disables the new WordPress emoji functionality. GPDR friendly.
 
 
 Note: Emoticons will still work and emoji's will still work in browsers which have built in support for them. This plugin simply removes the extra code bloat used to add support for emoji's in older browsers.
