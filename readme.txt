@@ -1,4 +1,4 @@
-=== Disable Emojis (GPDR friendly) ===
+=== Disable Emojis (GDPR friendly) ===
 Contributors: ryanhellyer
 Tags: emojis
 Donate link: https://geek.hellyer.kiwi/donate/
@@ -7,12 +7,12 @@ Tested up to: 5.0
 Stable tag: 1.7.1
 
 
-This plugin disables the new WordPress emoji functionality. GPDR friendly.
+This plugin disables the new WordPress emoji functionality. GDPR friendly.
 
 
 == Description ==
 
-This plugin disables the new WordPress emoji functionality. GPDR friendly.
+This plugin disables the new WordPress emoji functionality. GDPR friendly.
 
 
 Note: Emoticons will still work and emoji's will still work in browsers which have built in support for them. This plugin simply removes the extra code bloat used to add support for emoji's in older browsers.
@@ -32,7 +32,7 @@ Visit the <a href="https://geek.hellyer.kiwi/plugins/disable-emojis/">Disable Em
 == Changelog ==
 
 = 1.7.1 =
-* Added GPDR friendly label on advice from Ipstenu.
+* Added GDPR friendly label on advice from Ipstenu.
 
 = 1.7 =
 * Removed DNS prefetch URL again.
