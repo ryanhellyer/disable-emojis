@@ -3,7 +3,7 @@
 Plugin Name: Disable Emojis (GPDR friendly)
 Plugin URI: https://geek.hellyer.kiwi/plugins/disable-emojis/
 Description: Disable Emojis (GPDR friendly)
-Version: 1.7
+Version: 1.7.1
 Author: Ryan Hellyer
 Author URI: https://geek.hellyer.kiwi/
 License: GPL2
