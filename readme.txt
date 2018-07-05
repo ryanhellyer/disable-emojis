@@ -1,10 +1,10 @@
 === Disable Emojis (GDPR friendly) ===
 Contributors: ryanhellyer
-Tags: emojis
+Tags: emojis, gdpr, disable
 Donate link: https://geek.hellyer.kiwi/donate/
 Requires at least: 4.8
-Tested up to: 5.0
-Stable tag: 1.7.1
+Tested up to: 6.0
+Stable tag: 1.7.2
 
 
 This plugin disables the new WordPress emoji functionality. GDPR friendly.
@@ -16,6 +16,10 @@ This plugin disables the new WordPress emoji functionality. GDPR friendly.
 
 
 Note: Emoticons will still work and emoji's will still work in browsers which have built in support for them. This plugin simply removes the extra code bloat used to add support for emoji's in older browsers.
+
+= GDPR compliancy =
+
+This plugin does not do anything to make your site less GDPR compliant. It disables the DNS prefetching of emoji's within WordPress, which should ensure improved privacy. To determine if your site is GDPR compliant, please seek legal advice. I have done my best to ensure the plugin is 100% GDPR compliant, but I am not a lawyer so can not guarantee anything ;)
 
 
 == Installation ==
@@ -30,6 +34,10 @@ Visit the <a href="https://geek.hellyer.kiwi/plugins/disable-emojis/">Disable Em
 
 
 == Changelog ==
+
+= 1.7.2 =
+* Subtle improvement to code cleanliness.
+* Improved documentation regarding GDPR issues.
 
 = 1.7.1 =
 * Added GDPR friendly label on advice from Ipstenu.
