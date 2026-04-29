@@ -33,15 +33,19 @@ class EmojiModule implements ExecutableModule
         add_filter('wp_resource_hints', [$this, 'disableEmojisRemoveDnsPrefetch'], 10, 2);
     }
 
+    /**
+     * @param string[] $plugins
+     * @return string[]
+     */
     public function disableEmojisTinymce(array $plugins): array
     {
-        if (is_array($plugins)) {
-            return array_diff($plugins, ['wpemoji']);
-        }
-
-        return [];
+        return array_diff($plugins, ['wpemoji']);
     }
 
+    /**
+     * @param string[] $urls
+     * @return string[]
+     */
     public function disableEmojisRemoveDnsPrefetch(array $urls, string $relation_type): array
     {
         if ($relation_type === 'dns-prefetch') {

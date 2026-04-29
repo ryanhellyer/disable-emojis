@@ -1,5 +1,11 @@
 # Disable Emojis (GDPR friendly)
 
+[![PHP](https://img.shields.io/badge/PHP-7.4%2B-777BB4?logo=php)](https://php.net)
+[![WordPress](https://img.shields.io/badge/WordPress-5.0%2B-21759B?logo=wordpress)](https://wordpress.org)
+[![PHPStan](https://img.shields.io/badge/PHPStan-level%206-brightgreen)](https://phpstan.org)
+[![PSR-12](https://img.shields.io/badge/coding%20standard-PSR--12-ff69b4)](https://www.php-fig.org/psr/psr-12/)
+[![License](https://img.shields.io/badge/license-GPL--2.0--or--later-blue)](LICENSE)
+
 A WordPress plugin that disables the emoji functionality, removing unnecessary code bloat and preventing connections to WordPress.org's emoji CDN.
 
 ## Features
