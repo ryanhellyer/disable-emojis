@@ -8,5 +8,12 @@
             "name": "ryanhellyer"
         }
     ],
-    "require": {}
+    "require": {
+        "inpsyde/modularity": "^1.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "RyanHellyer\\DisableEmojis\\": "src/"
+        }
+    }
 }
