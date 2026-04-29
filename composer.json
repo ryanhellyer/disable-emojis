@@ -16,14 +16,21 @@
         "phpstan/phpstan": "^1.12",
         "szepeviktor/phpstan-wordpress": "^1.3",
         "friendsofphp/php-cs-fixer": "^3.95",
-        "squizlabs/php_codesniffer": "^4.0"
+        "squizlabs/php_codesniffer": "^4.0",
+        "phpunit/phpunit": "^13.1"
     },
     "scripts": {
         "phpcs": "phpcs --report=full -s && echo \"No violations found.\"",
         "phpcbf": "phpcbf",
         "cs": "php-cs-fixer fix --dry-run --diff",
         "cs:fix": "php-cs-fixer fix",
-        "phpstan": "phpstan analyse --configuration=phpstan.neon"
+        "phpstan": "phpstan analyse --configuration=phpstan.neon",
+        "test": "phpunit"
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "RyanHellyer\\DisableEmojis\\Tests\\": "tests/"
+        }
     },
     "autoload": {
         "psr-4": {

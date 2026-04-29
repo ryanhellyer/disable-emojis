@@ -10,4 +10,9 @@
     <arg value="s"/>
 
     <rule ref="PSR12"/>
+
+    <!-- Allow bootstrap files to declare functions and have side effects -->
+    <rule ref="PSR1.Files.SideEffects">
+        <exclude-pattern>tests/bootstrap.php</exclude-pattern>
+    </rule>
 </ruleset>
