@@ -1,0 +1,8 @@
+parameters:
+    level: 6
+    paths:
+        - src/
+        - disable-emojis.php
+
+includes:
+    - vendor/szepeviktor/phpstan-wordpress/extension.neon

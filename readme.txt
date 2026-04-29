@@ -1,87 +1,152 @@
 === Disable Emojis (GDPR friendly) ===
 Contributors: ryanhellyer
-Tags: emojis, gdpr, disable
+Tags: emojis, gdpr, disable, performance
 Donate link: https://geek.hellyer.kiwi/donate/
 Requires at least: 4.8
-Tested up to: 6.4
-Stable tag: 1.7.5
+Tested up to: 7.1
+Stable tag: 1.8
+License: GPLv2 or later
 
-
-This plugin disables the new WordPress emoji functionality. GDPR friendly.
-
+Disable the WordPress emoji functionality to improve performance and privacy.
 
 == Description ==
 
-This plugin disables the new WordPress emoji functionality. GDPR friendly.
+This plugin disables the WordPress emoji functionality, removing unnecessary code bloat that adds support for emojis in older browsers.
 
+= What it does =
 
-Note: Emoticons will still work and emojis will still work in browsers which have built in support for them. This plugin simply removes the extra code bloat used to add support for emojis in older browsers.
+* Removes the emoji detection script from `wp_head` and the admin
+* Removes emoji styles from `wp_print_styles` and admin
+* Removes emoji DNS prefetching, preventing connections to `s.w.org`
+* Removes the `wpemoji` TinyMCE plugin
+* Strips emoji CDN hostname from DNS prefetch hints
+
+= Performance & Privacy =
+
+Emojis will still display in modern browsers that have built-in support. This plugin simply removes the extra HTTP requests and JavaScript overhead for browsers that don't need it. Additionally, it prevents DNS prefetching to WordPress.org's emoji CDN, improving privacy.
+
+Note: Emoticons like `:)` will continue to work as expected.
+
+= Requirements =
+
+* PHP 7.4+
+* WordPress 5.0+
 
 = GDPR compliancy =
 
-This plugin does not do anything to make your site less GDPR compliant. It disables the DNS prefetching of emojis within WordPress, which should ensure improved privacy. To determine if your site is GDPR compliant, please seek legal advice. I have done my best to ensure the plugin is 100% GDPR compliant, but I am not a lawyer so can not guarantee anything ;)
+This plugin does not send any data to external servers. It disables DNS prefetching of emojis within WordPress, which should ensure improved privacy. To determine if your site is GDPR compliant, please seek legal advice. I have done my best to ensure the plugin is 100% GDPR compliant, but I am not a lawyer so cannot guarantee anything.
 
+= Architecture =
+
+The plugin uses:
+
+* **PSR-4 autoloading** — classes in `src/` are autoloaded via Composer under the `RyanHellyer\DisableEmojis` namespace.
+* **Inpsyde Modularity** — the plugin is structured as a module implementing `ExecutableModule`, bootstrapped via the library's `Package` class.
+
+= Quality =
+
+All code uses `declare(strict_types=1)` and follows PSR-12. The plugin runs the following tooling:
+
+* **PHP_CodeSniffer** (run via `composer phpcs`) — sniffs for PSR-12 violations
+* **PHP-CS-Fixer** (run via `composer cs`) — dry-run style check
+* **PHPStan** at level 6 (run via `composer phpstan`) — static analysis
 
 == Installation ==
 
-After you've downloaded and extracted the files:
+= Standard installation =
 
-1. Upload the complete 'disable-emojis' folder to the '/wp-content/plugins/' directory OR install via the plugin installer
-2. Activate the plugin through the 'Plugins' menu in WordPress
-3. And yer done!
+1. Upload the `disable-emojis` folder to `/wp-content/plugins/`, or install via the WordPress plugin installer
+2. Activate the plugin through the Plugins screen in WordPress
+3. Done! Emoji bloat is automatically removed.
 
-Visit the <a href="https://geek.hellyer.kiwi/plugins/disable-emojis/">Disable Emojis plugin</a> for more information.
+= Composer installation =
 
+If your site uses Composer for dependency management:
+
+    composer require ryanhellyer/disable-emojiis
+
+Visit the [Disable Emojis plugin page](https://geek.hellyer.kiwi/plugins/disable-emojis/) for more information.
+
+== Frequently Asked Questions ==
+
+= Will this break emojis on my site? =
+
+No. Modern browsers have built-in emoji support. This plugin only removes the JavaScript and CSS that WordPress adds for very old browsers.
+
+= Will emoticons still work? =
+
+Yes. Text-based emoticons like `:)` and `:D` will continue to work as they always have.
+
+= Is this plugin GDPR compliant? =
+
+It does not connect to any external servers or send any data. It removes the DNS prefetch to WordPress.org's emoji CDN. See the GDPR section above for details.
 
 == Changelog ==
 
-= 1.7.5 =
+= 1.8 (2026-04-30) =
+* Refactor for modern PHP standards
+
+= 1.7.8 (2026-04-29) =
+* Confirmed support for newer WordPress versions.
+
+= 1.7.7 (2024) =
+* Confirmed support for newer WordPress versions.
+
+= 1.7.6 (2023-06-28) =
+* Confirmed support for newer WordPress versions.
+
+= 1.7.5 (2023-05-19) =
 * Added Composer support.
 
-= 1.7.4 =
+= 1.7.4 (2018-07-05) =
 * Fixing typos.
 
-= 1.7.3 =
-* Unneeded version bump to shut the WordPress.org notice up.
+= 1.7.3 (2018-07-05) =
+* Version bump.
 
-= 1.7.2 =
+= 1.7.2 (2018-07-05) =
 * Subtle improvement to code cleanliness.
 * Improved documentation regarding GDPR issues.
 
-= 1.7.1 =
-* Added GDPR friendly label on advice from Ipstenu.
+= 1.7.1 (2018-06-13) =
+* Added GDPR friendly label.
 
-= 1.7 =
+= 1.7 (2017-08-04) =
 * Removed DNS prefetch URL again.
-* This time using simple string check rather than relying on internal WordPress filters.
+* Using simple string check rather than relying on internal WordPress filters.
 
-= 1.6 =
-* Removed DNS prefetch URL. Props to Aaron Queen for assisting with this.
+= 1.6 (2017-07-19) =
+* Removed DNS prefetch URL. Props to Aaron Queen.
 
-= 1.5.3 =
-* Catering to new DNS prefetch URL in version 4.7 of core
+= 1.5.3 (2016-12-19) =
+* Catering to new DNS prefetch URL in version 4.7 of core.
 
-= 1.5.2 =
+= 1.5.2 (2016-08-23) =
 * Improved documentation.
-* Removed redundant dns prefetching. Thanks to <a href="http://blog.milandinic.com/">Milan Dinic</a> for the pull request.
+* Removed redundant DNS prefetching.
 
-= 1.5.1 =
+= 1.5.1 (2016-08-23) =
 * Updating documentation.
 
-= 1.5 =
-* Catering for invalid $plugin array.
+= 1.5 (2017-08-04) =
+* Catering for invalid plugin array.
 
-= 1.4 =
+= 1.4 (2018-06-13) =
 * Updating to use Otto's code.
 
-= 1.3 =
-Removing extraneous styles.
+= 1.3 (2018-05-04) =
+* Removing extraneous styles.
 
-= 1.2 =
-Bug fix.
+= 1.2 (2016-08-23) =
+* Bug fix.
 
-= 1.1 =
-Updating to work with latest beta.
+= 1.1 (2016-08-23) =
+* Updating to work with latest beta.
 
-= 1.0 =
-Initial release.
+= 1.0 (2015-03-22) =
+* Initial release.
+
+== Upgrade Notice ==
+
+= 1.7.8 =
+Compatible with the latest version of WordPress.

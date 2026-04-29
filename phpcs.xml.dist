@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<ruleset name="DisableEmojis">
+    <description>PSR-12 coding standards for Disable Emojis</description>
+
+    <file>.</file>
+    <exclude-pattern>vendor/</exclude-pattern>
+
+    <arg name="basepath" value="."/>
+    <arg name="colors"/>
+    <arg value="s"/>
+
+    <rule ref="PSR12"/>
+
+    <!-- Allow bootstrap files to declare functions and have side effects -->
+    <rule ref="PSR1.Files.SideEffects">
+        <exclude-pattern>tests/bootstrap.php</exclude-pattern>
+    </rule>
+</ruleset>
