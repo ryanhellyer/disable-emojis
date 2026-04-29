@@ -1,40 +1,7 @@
 # Disable Emojis (GDPR friendly)
 
-[![PHP](https://img.shields.io/badge/PHP-%E2%89%A57.4-777BB4?logo=php&logoColor=white)](https://php.net)
-[![WordPress](https://img.shields.io/badge/WordPress-%E2%89%A55.0-21759B?logo=wordpress&logoColor=white)](https://wordpress.org)
-[![PHPStan](https://img.shields.io/badge/PHPStan-level%206-brightgreen)](https://phpstan.org)
-[![PSR-12](https://img.shields.io/badge/coding%20standard-PSR--12-ff69b4)](https://www.php-fig.org/psr/psr-12/)
-[![License](https://img.shields.io/badge/license-GPL--2.0--or--later-blue)](LICENSE)
+Disable the WordPress emoji functionality to improve performance and privacy.
 
-A WordPress plugin that disables the emoji functionality, removing unnecessary code bloat and preventing connections to WordPress.org's emoji CDN.
-
-## Features
-
-- Removes emoji detection script from `wp_head` and admin
-- Removes emoji styles from `wp_print_styles` and admin
-- Removes emoji DNS prefetching, preventing connections to `s.w.org`
-- Removes the `wpemoji` TinyMCE plugin
-- Strips emoji CDN hostname from DNS prefetch hints
-- 100% GDPR friendly — no external data sent
-
-Emojis still display in modern browsers with built-in support. Only the extra HTTP requests and JavaScript for older browsers are removed.
-
-## Requirements
-
-- PHP 7.4+
-- WordPress 5.0+
-
-## Installation
-
-### WordPress admin
-
-Search for "Disable Emojis" in the plugin installer, or upload the folder to `/wp-content/plugins/` and activate.
-
-### Composer
-
-```bash
-composer require ryanhellyer/disable-emojiis
-```
 
 ## Architecture
 
@@ -44,16 +11,54 @@ The plugin uses:
 - **Inpsyde Modularity** — the plugin is structured as a module implementing `ExecutableModule`, bootstrapped via the library's `Package` class.
 
 ```
-├── .php-cs-fixer.dist.php       # PHP-CS-Fixer configuration
+├── .github/workflows/ci.yml     # GitHub Actions CI
+├── bin/generate-readme.php       # README generator
 ├── composer.json
-├── disable-emojis.php           # Plugin entry point, boots Modularity Package
-├── phpcs.xml.dist               # PHP_CodeSniffer configuration
-├── phpstan.neon                 # PHPStan configuration
-├── readme.txt                   # WordPress.org plugin readme
+├── disable-emojis.php            # Plugin entry point, boots Modularity Package
+├── phpcs.xml.dist                # PHP_CodeSniffer configuration
+├── phpstan.neon                  # PHPStan configuration
+├── readme.txt                    # WordPress.org plugin readme
 ├── README.md
-└── src/
-    └── EmojiModule.php          # Module implementing ExecutableModule
+├── src/
+│   └── EmojiModule.php           # Module implementing ExecutableModule
+└── tests/
+    ├── EmojiModuleTest.php       # Unit tests
+    └── bootstrap.php             # WordPress function stubs
 ```
+
+## Installation
+
+### Standard installation
+
+1. Upload the `disable-emojis` folder to `/wp-content/plugins/`, or install via the WordPress plugin installer
+2. Activate the plugin through the Plugins screen in WordPress
+3. Done! Emoji bloat is automatically removed.
+
+### Composer installation
+
+If your site uses Composer for dependency management:
+
+```
+composer require ryanhellyer/disable-emojiis
+```
+
+Visit the [Disable Emojis plugin page](https://geek.hellyer.kiwi/plugins/disable-emojis/) for more information.
+
+
+## Frequently Asked Questions
+
+### Will this break emojis on my site?
+
+No. Modern browsers have built-in emoji support. This plugin only removes the JavaScript and CSS that WordPress adds for very old browsers.
+
+### Will emoticons still work?
+
+Yes. Text-based emoticons like `:)` and `:D` will continue to work as they always have.
+
+### Is this plugin GDPR compliant?
+
+It does not connect to any external servers or send any data. It removes the DNS prefetch to WordPress.org's emoji CDN. See the GDPR section above for details.
+
 
 ## Quality
 
@@ -73,36 +78,123 @@ All code uses `declare(strict_types=1)` and follows PSR-12.
 2. Run `composer install`
 3. Make your changes in `src/`
 4. Run the quality tooling:
+
    ```bash
    composer phpcs
    composer phpstan
    ```
-5. Submit a pull request
 
-## Frequently Asked Questions
+5. Run `composer generate-readme` to regenerate this file
+6. Submit a pull request
 
-### Will this break emojis on my site?
+## Description
 
-No. Modern browsers have built-in emoji support. This plugin only removes the JavaScript and CSS that WordPress adds for very old browsers.
+This plugin disables the WordPress emoji functionality, removing unnecessary code bloat that adds support for emojis in older browsers.
 
-### Will emoticons still work?
+### What it does
 
-Yes. Text-based emoticons like `:)` and `:D` work as they always have.
+* Removes the emoji detection script from `wp_head` and the admin
+* Removes emoji styles from `wp_print_styles` and admin
+* Removes emoji DNS prefetching, preventing connections to `s.w.org`
+* Removes the `wpemoji` TinyMCE plugin
+* Strips emoji CDN hostname from DNS prefetch hints
 
-### Is this plugin GDPR compliant?
+### Performance & Privacy
 
-It does not connect to any external servers or send any data. It removes the DNS prefetch to WordPress.org's emoji CDN.
+Emojis will still display in modern browsers that have built-in support. This plugin simply removes the extra HTTP requests and JavaScript overhead for browsers that don't need it. Additionally, it prevents DNS prefetching to WordPress.org's emoji CDN, improving privacy.
+
+Note: Emoticons like `:)` will continue to work as expected.
+
+### Requirements
+
+* PHP 7.4+
+* WordPress 5.0+
+
+### GDPR compliancy
+
+This plugin does not send any data to external servers. It disables DNS prefetching of emojis within WordPress, which should ensure improved privacy. To determine if your site is GDPR compliant, please seek legal advice. I have done my best to ensure the plugin is 100% GDPR compliant, but I am not a lawyer so cannot guarantee anything.
 
 ## Changelog
 
-### 1.7.8
-Confirmed support for newer WordPress versions.
+### 1.8 — 2026-04-30
 
-### 1.7.5
-Added Composer support.
+* Refactor for modern PHP standards
 
-Earlier versions listed in `readme.txt`.
+### 1.7.8 — 2026-04-29
 
-## License
+* Confirmed support for newer WordPress versions.
 
-GPL-2.0-or-later
+### 1.7.7 — 2024
+
+* Confirmed support for newer WordPress versions.
+
+### 1.7.6 — 2023-06-28
+
+* Confirmed support for newer WordPress versions.
+
+### 1.7.5 — 2023-05-19
+
+* Added Composer support.
+
+### 1.7.4 — 2018-07-05
+
+* Fixing typos.
+
+### 1.7.3 — 2018-07-05
+
+* Version bump.
+
+### 1.7.2 — 2018-07-05
+
+* Subtle improvement to code cleanliness.
+* Improved documentation regarding GDPR issues.
+
+### 1.7.1 — 2018-06-13
+
+* Added GDPR friendly label.
+
+### 1.7 — 2017-08-04
+
+* Removed DNS prefetch URL again.
+* Using simple string check rather than relying on internal WordPress filters.
+
+### 1.6 — 2017-07-19
+
+* Removed DNS prefetch URL. Props to Aaron Queen.
+
+### 1.5.3 — 2016-12-19
+
+* Catering to new DNS prefetch URL in version 4.7 of core.
+
+### 1.5.2 — 2016-08-23
+
+* Improved documentation.
+* Removed redundant DNS prefetching.
+
+### 1.5.1 — 2016-08-23
+
+* Updating documentation.
+
+### 1.5 — 2017-08-04
+
+* Catering for invalid plugin array.
+
+### 1.4 — 2018-06-13
+
+* Updating to use Otto's code.
+
+### 1.3 — 2018-05-04
+
+* Removing extraneous styles.
+
+### 1.2 — 2016-08-23
+
+* Bug fix.
+
+### 1.1 — 2016-08-23
+
+* Updating to work with latest beta.
+
+### 1.0 — 2015-03-22
+
+* Initial release.

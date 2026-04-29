@@ -15,17 +15,17 @@ This plugin disables the WordPress emoji functionality, removing unnecessary cod
 
 = What it does =
 
-* Removes the emoji detection script from <code>wp_head</code> and the admin
-* Removes emoji styles from <code>wp_print_styles</code> and admin
-* Removes emoji DNS prefetching, preventing connections to <code>s.w.org</code>
-* Removes the <code>wpemoji</code> TinyMCE plugin
+* Removes the emoji detection script from `wp_head` and the admin
+* Removes emoji styles from `wp_print_styles` and admin
+* Removes emoji DNS prefetching, preventing connections to `s.w.org`
+* Removes the `wpemoji` TinyMCE plugin
 * Strips emoji CDN hostname from DNS prefetch hints
 
 = Performance & Privacy =
 
 Emojis will still display in modern browsers that have built-in support. This plugin simply removes the extra HTTP requests and JavaScript overhead for browsers that don't need it. Additionally, it prevents DNS prefetching to WordPress.org's emoji CDN, improving privacy.
 
-Note: Emoticons like <code>:)</code> will continue to work as expected.
+Note: Emoticons like `:)` will continue to work as expected.
 
 = Requirements =
 
@@ -40,22 +40,22 @@ This plugin does not send any data to external servers. It disables DNS prefetch
 
 The plugin uses:
 
-* <strong>PSR-4 autoloading</strong> — classes in <code>src/</code> are autoloaded via Composer under the <code>RyanHellyer\DisableEmojis</code> namespace.
-* <strong>Inpsyde Modularity</strong> — the plugin is structured as a module implementing <code>ExecutableModule</code>, bootstrapped via the library's <code>Package</code> class.
+* **PSR-4 autoloading** — classes in `src/` are autoloaded via Composer under the `RyanHellyer\DisableEmojis` namespace.
+* **Inpsyde Modularity** — the plugin is structured as a module implementing `ExecutableModule`, bootstrapped via the library's `Package` class.
 
 = Quality =
 
-All code uses <code>declare(strict_types=1)</code> and follows PSR-12. The plugin runs the following tooling:
+All code uses `declare(strict_types=1)` and follows PSR-12. The plugin runs the following tooling:
 
-* <strong>PHP_CodeSniffer</strong> (run via <code>composer phpcs</code>) — sniffs for PSR-12 violations
-* <strong>PHP-CS-Fixer</strong> (run via <code>composer cs</code>) — dry-run style check
-* <strong>PHPStan</strong> at level 6 (run via <code>composer phpstan</code>) — static analysis
+* **PHP_CodeSniffer** (run via `composer phpcs`) — sniffs for PSR-12 violations
+* **PHP-CS-Fixer** (run via `composer cs`) — dry-run style check
+* **PHPStan** at level 6 (run via `composer phpstan`) — static analysis
 
 == Installation ==
 
 = Standard installation =
 
-1. Upload the <code>disable-emojis</code> folder to <code>/wp-content/plugins/</code>, or install via the WordPress plugin installer
+1. Upload the `disable-emojis` folder to `/wp-content/plugins/`, or install via the WordPress plugin installer
 2. Activate the plugin through the Plugins screen in WordPress
 3. Done! Emoji bloat is automatically removed.
 
@@ -65,7 +65,7 @@ If your site uses Composer for dependency management:
 
     composer require ryanhellyer/disable-emojiis
 
-Visit the <a href="https://geek.hellyer.kiwi/plugins/disable-emojis/">Disable Emojis plugin page</a> for more information.
+Visit the [Disable Emojis plugin page](https://geek.hellyer.kiwi/plugins/disable-emojis/) for more information.
 
 == Frequently Asked Questions ==
 
@@ -75,7 +75,7 @@ No. Modern browsers have built-in emoji support. This plugin only removes the Ja
 
 = Will emoticons still work? =
 
-Yes. Text-based emoticons like <code>:)</code> and <code>:D</code> will continue to work as they always have.
+Yes. Text-based emoticons like `:)` and `:D` will continue to work as they always have.
 
 = Is this plugin GDPR compliant? =
 
@@ -145,3 +145,8 @@ It does not connect to any external servers or send any data. It removes the DNS
 
 = 1.0 (2015-03-22) =
 * Initial release.
+
+== Upgrade Notice ==
+
+= 1.7.8 =
+Compatible with the latest version of WordPress.
