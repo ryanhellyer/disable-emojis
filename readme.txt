@@ -3,7 +3,7 @@ Contributors: ryanhellyer
 Tags: emojis, gdpr, disable, performance
 Donate link: https://geek.hellyer.kiwi/donate/
 Requires at least: 4.8
-Tested up to: 7.1
+Tested up to: 7.0
 Stable tag: 1.8
 License: GPLv2 or later
 
