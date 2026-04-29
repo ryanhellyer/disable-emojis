@@ -1,4 +1,5 @@
 <?php
+
 /*
 Plugin Name: Disable Emojis (GDPR friendly)
 Plugin URI: https://geek.hellyer.kiwi/plugins/disable-emojis/
