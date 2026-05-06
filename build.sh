@@ -39,15 +39,58 @@ cp -r build/psr/container vendor/psr/container
 cp -r build/inpsyde/modularity vendor/inpsyde/modularity
 
 echo "=== Generating autoloader ==="
+SCOPED_AUTOLOADER=$(cat << 'AUTOLOAD'
+
+spl_autoload_register(static function (string $class): void {
+    $prefixes = [
+        'RyanHellyer\\DisableEmojis\\Vendor\\Psr\\Container\\' => __DIR__ . '/psr/container/src/',
+        'RyanHellyer\\DisableEmojis\\Vendor\\Inpsyde\\Modularity\\' => __DIR__ . '/inpsyde/modularity/src/',
+    ];
+    foreach ($prefixes as $prefix => $baseDir) {
+        $len = strlen($prefix);
+        if (strncmp($prefix, $class, $len) !== 0) {
+            continue;
+        }
+        $file = $baseDir . str_replace('\\', '/', substr($class, $len)) . '.php';
+        if (file_exists($file)) {
+            require $file;
+            return;
+        }
+    }
+});
+AUTOLOAD
+)
+
 COMPOSER_INIT=$(grep -oP 'ComposerAutoloaderInit\w+' vendor/autoload.php | head -1)
 
-cat > vendor/autoload.php << 'AUTOLOAD'
+cat > vendor/autoload.php << AUTOLOAD
 <?php
 
 require_once __DIR__ . '/composer/autoload_real.php';
+${COMPOSER_INIT}::getLoader();
+
+${SCOPED_AUTOLOADER}
 AUTOLOAD
-echo "\\${COMPOSER_INIT}::getLoader();" >> vendor/autoload.php
-cat >> vendor/autoload.php << 'AUTOLOAD'
+
+echo "=== Cleaning up build directory ==="
+rm -rf build
+
+if [ "$MODE" = "prod" ]; then
+    echo "=== Creating production zip ==="
+
+    PLUGIN_DIR="build/plugin"
+    mkdir -p "$PLUGIN_DIR"
+
+    cp disable-emojis.php "$PLUGIN_DIR/"
+    cp readme.txt "$PLUGIN_DIR/" 2>/dev/null || true
+    cp license.txt "$PLUGIN_DIR/" 2>/dev/null || true
+    cp -r src "$PLUGIN_DIR/"
+
+    mkdir -p "$PLUGIN_DIR/vendor"
+
+    # Write a standalone autoloader for the zip (no Composer dependency)
+    cat > "$PLUGIN_DIR/vendor/autoload.php" << 'AUTOLOAD'
+<?php
 
 spl_autoload_register(static function (string $class): void {
     $prefixes = [
@@ -68,25 +111,10 @@ spl_autoload_register(static function (string $class): void {
 });
 AUTOLOAD
 
-echo "=== Cleaning up build directory ==="
-rm -rf build
-
-if [ "$MODE" = "prod" ]; then
-    echo "=== Creating production zip ==="
-
-    PLUGIN_DIR="build/plugin"
-    mkdir -p "$PLUGIN_DIR"
-
-    cp disable-emojis.php "$PLUGIN_DIR/"
-    cp readme.txt "$PLUGIN_DIR/" 2>/dev/null || true
-    cp license.txt "$PLUGIN_DIR/" 2>/dev/null || true
-    cp -r src "$PLUGIN_DIR/"
-
-    mkdir -p "$PLUGIN_DIR/vendor"
-    cp -r vendor/psr "$PLUGIN_DIR/vendor/psr"
-    cp -r vendor/inpsyde "$PLUGIN_DIR/vendor/inpsyde"
-    cp -r vendor/composer "$PLUGIN_DIR/vendor/composer"
-    cp vendor/autoload.php "$PLUGIN_DIR/vendor/autoload.php"
+    mkdir -p "$PLUGIN_DIR/vendor/psr"
+    mkdir -p "$PLUGIN_DIR/vendor/inpsyde"
+    cp -r vendor/psr/container "$PLUGIN_DIR/vendor/psr/container"
+    cp -r vendor/inpsyde/modularity "$PLUGIN_DIR/vendor/inpsyde/modularity"
 
     cd "$PLUGIN_DIR"
     zip -r ../../disable-emojis.zip . -x ".*"
