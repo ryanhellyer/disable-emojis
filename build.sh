@@ -2,8 +2,8 @@
 set -euo pipefail
 
 echo "Select build mode:"
-echo "  1) Dev - build scoped deps, keep vendor/ intact"
-echo "  2) Prod - remove vendor/, install prod deps, build scoped deps, create zip"
+echo "  1) Dev - build scoped deps into vendor/"
+echo "  2) Prod - build scoped deps, create zip, cleanup"
 read -rp "Choice [1-2]: " CHOICE
 
 case "$CHOICE" in
@@ -13,6 +13,10 @@ case "$CHOICE" in
 esac
 
 echo "=== Mode: $MODE ==="
+
+echo "=== Generating README.md ==="
+composer generate-readme
+
 echo "=== Cleaning build directory ==="
 rm -rf build
 
@@ -28,12 +32,14 @@ echo "=== Running PHP-Scoper ==="
 PHP_SCOPER="$(command -v php-scoper || echo '/usr/local/bin/php-scoper')"
 $PHP_SCOPER add-prefix --output-dir=build --force
 
-echo "=== Generating autoloader ==="
-mkdir -p build/vendor
-mv build/psr build/vendor/
-mv build/inpsyde build/vendor/
+echo "=== Replacing vendor files with scoped versions ==="
+rm -rf vendor/psr/container
+rm -rf vendor/inpsyde/modularity
+cp -r build/psr/container vendor/psr/container
+cp -r build/inpsyde/modularity vendor/inpsyde/modularity
 
-cat > build/vendor/autoload.php << 'AUTOLOAD'
+echo "=== Generating autoloader ==="
+cat > vendor/autoload.php << 'AUTOLOAD'
 <?php
 
 spl_autoload_register(static function (string $class): void {
@@ -55,11 +61,10 @@ spl_autoload_register(static function (string $class): void {
 });
 AUTOLOAD
 
-if [ "$MODE" = "dev" ]; then
-    echo "=== Dev build complete ==="
-    echo "Scoped deps at: build/vendor/"
-    echo "Run tests: ./vendor/bin/phpunit"
-elif [ "$MODE" = "prod" ]; then
+echo "=== Cleaning up build directory ==="
+rm -rf build
+
+if [ "$MODE" = "prod" ]; then
     echo "=== Creating production zip ==="
 
     PLUGIN_DIR="build/plugin"
@@ -69,15 +74,20 @@ elif [ "$MODE" = "prod" ]; then
     cp readme.txt "$PLUGIN_DIR/" 2>/dev/null || true
     cp license.txt "$PLUGIN_DIR/" 2>/dev/null || true
     cp -r src "$PLUGIN_DIR/"
-    cp -r build/vendor "$PLUGIN_DIR/"
+    cp -r vendor "$PLUGIN_DIR/"
 
     cd "$PLUGIN_DIR"
     zip -r ../../disable-emojis.zip . -x ".*"
     cd ../../
 
-    echo "=== Removing vendor directory ==="
+    echo "=== Cleaning up ==="
+    rm -rf build
     rm -rf vendor
 
     echo "=== Production zip created: disable-emojis.zip ==="
     echo "vendor/ was removed. Run 'composer install' to restore dev dependencies."
+else
+    echo "=== Dev build complete ==="
+    echo "vendor/ now has scoped dependencies."
+    echo "Run 'composer install' to restore original dev dependencies."
 fi

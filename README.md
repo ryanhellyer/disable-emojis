@@ -13,6 +13,7 @@ The plugin uses:
 ```
 ├── .github/workflows/ci.yml     # GitHub Actions CI
 ├── bin/generate-readme.php       # README generator
+├── build.sh                      # Build script for scoped vendor dependencies
 ├── composer.json
 ├── disable-emojis.php            # Plugin entry point, boots Modularity Package
 ├── phpcs.xml.dist                # PHP_CodeSniffer configuration
@@ -84,7 +85,7 @@ All code uses `declare(strict_types=1)` and follows PSR-12.
    composer phpstan
    ```
 
-5. Run `composer generate-readme` to regenerate this file
+5. Run `./build.sh` to build scoped vendor dependencies and regenerate this file (required when testing alongside plugins that bundle their own PSR-11 container)
 6. Submit a pull request
 
 ## Description

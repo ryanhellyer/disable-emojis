@@ -34,10 +34,7 @@ use RyanHellyer\DisableEmojis\Vendor\Inpsyde\Modularity\Package;
 use RyanHellyer\DisableEmojis\Vendor\Inpsyde\Modularity\Properties\PluginProperties;
 use RyanHellyer\DisableEmojis\EmojiModule;
 
-$autoloader = __DIR__ . '/build/vendor/autoload.php';
-if (!file_exists($autoloader)) {
-    $autoloader = __DIR__ . '/vendor/autoload.php';
-}
+$autoloader = __DIR__ . '/vendor/autoload.php';
 if (file_exists($autoloader)) {
     require_once $autoloader;
 }
