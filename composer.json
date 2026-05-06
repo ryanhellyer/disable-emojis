@@ -18,7 +18,8 @@
         "friendsofphp/php-cs-fixer": "^3.95",
         "squizlabs/php_codesniffer": "^4.0",
         "phpunit/phpunit": "^13.1",
-        "wpreadme2markdown/wpreadme2markdown": "^4.1"
+        "wpreadme2markdown/wpreadme2markdown": "^4.1",
+        "humbug/php-scoper": "^0.18"
     },
     "scripts": {
         "phpcs": "phpcs --report=full -s && echo \"No violations found.\"",

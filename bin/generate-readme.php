@@ -33,7 +33,11 @@ foreach ($lines as $i => $line) {
     $trimmed = ltrim($line);
 
     // Line starting with 4+ spaces that isn't empty and isn't a list item
-    if (preg_match('/^(?:    |\t)(.+)$/', $line, $m) && !in_array(trim($line), ['', '-']) && !preg_match('/^\s*[\*\-\d]\.?\s/', $trimmed)) {
+    if (
+        preg_match('/^(?:    |\t)(.+)$/', $line, $m)
+        && !in_array(trim($line), ['', '-'])
+        && !preg_match('/^\s*[\*\-\d]\.?\s/', $trimmed)
+    ) {
         if (!$inCode) {
             $result[] = '```';
             $inCode = true;
@@ -75,7 +79,15 @@ $markdown = preg_replace("/\n{3,}/", "\n\n", $markdown);
 // Build the final README.md with GitHub-specific sections
 $header = '# Disable Emojis (GDPR friendly)
 
-[![PHP](https://img.shields.io/badge/PHP-%E2%89%A57.4-777BB4?logo=php&logoColor=white)](https://php.net) [![WordPress](https://img.shields.io/badge/WordPress-%E2%89%A55.0-21759B?logo=wordpress&logoColor=white)](https://wordpress.org) [![PHPStan](https://img.shields.io/badge/PHPStan-level%206-brightgreen)](https://phpstan.org) [![PSR-12](https://img.shields.io/badge/coding%20standard-PSR--12-ff69b4)](https://www.php-fig.org/psr/psr-12/) [![License](https://img.shields.io/badge/license-GPL--2.0--or--later-blue)](LICENSE)
+[![PHP](https://img.shields.io/badge/PHP-%E2%89%A57.4-777BB4?logo=php&logoColor=white)](https://php.net)
+[![WordPress](https://img.shields.io/badge/WordPress-%E2%89%A55.0-21759B'
+    . '?logo=wordpress&logoColor=white)](https://wordpress.org)
+[![PHPStan](https://img.shields.io/badge/PHPStan-level%206-brightgreen)'
+    . '](https://phpstan.org)
+[![PSR-12](https://img.shields.io/badge/coding%20standard-PSR--12-ff69b4)'
+    . '](https://www.php-fig.org/psr/psr-12/)
+[![License](https://img.shields.io/badge/license-GPL--2.0--or--later-blue)'
+    . '](LICENSE)
 
 ';
 
@@ -84,11 +96,13 @@ $architecture = '## Architecture
 The plugin uses:
 
 - **PSR-4 autoloading** — classes in `src/` are autoloaded via Composer under the `RyanHellyer\DisableEmojis` namespace.
-- **Inpsyde Modularity** — the plugin is structured as a module implementing `ExecutableModule`, bootstrapped via the library\'s `Package` class.
+- **Inpsyde Modularity** — the plugin is structured as a module implementing
+  `ExecutableModule`, bootstrapped via the library\'s `Package` class.
 
 ```
 ├── .github/workflows/ci.yml     # GitHub Actions CI
 ├── bin/generate-readme.php       # README generator
+├── build.sh                      # Build script for scoped vendor dependencies
 ├── composer.json
 ├── disable-emojis.php            # Plugin entry point, boots Modularity Package
 ├── phpcs.xml.dist                # PHP_CodeSniffer configuration
@@ -130,7 +144,8 @@ $contributing = '## Contributing
    composer phpstan
    ```
 
-5. Run `composer generate-readme` to regenerate this file
+5. Run `./build.sh` to build scoped vendor dependencies and regenerate this file
+   (required when testing alongside plugins that bundle their own PSR-11 container)
 6. Submit a pull request
 
 ';

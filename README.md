@@ -8,11 +8,13 @@ Disable the WordPress emoji functionality to improve performance and privacy.
 The plugin uses:
 
 - **PSR-4 autoloading** — classes in `src/` are autoloaded via Composer under the `RyanHellyer\DisableEmojis` namespace.
-- **Inpsyde Modularity** — the plugin is structured as a module implementing `ExecutableModule`, bootstrapped via the library's `Package` class.
+- **Inpsyde Modularity** — the plugin is structured as a module implementing
+  `ExecutableModule`, bootstrapped via the library's `Package` class.
 
 ```
 ├── .github/workflows/ci.yml     # GitHub Actions CI
 ├── bin/generate-readme.php       # README generator
+├── build.sh                      # Build script for scoped vendor dependencies
 ├── composer.json
 ├── disable-emojis.php            # Plugin entry point, boots Modularity Package
 ├── phpcs.xml.dist                # PHP_CodeSniffer configuration
@@ -84,7 +86,8 @@ All code uses `declare(strict_types=1)` and follows PSR-12.
    composer phpstan
    ```
 
-5. Run `composer generate-readme` to regenerate this file
+5. Run `./build.sh` to build scoped vendor dependencies and regenerate this file
+   (required when testing alongside plugins that bundle their own PSR-11 container)
 6. Submit a pull request
 
 ## Description
@@ -115,6 +118,10 @@ Note: Emoticons like `:)` will continue to work as expected.
 This plugin does not send any data to external servers. It disables DNS prefetching of emojis within WordPress, which should ensure improved privacy. To determine if your site is GDPR compliant, please seek legal advice. I have done my best to ensure the plugin is 100% GDPR compliant, but I am not a lawyer so cannot guarantee anything.
 
 ## Changelog
+
+### 1.9 — 2026-05-06
+
+* Name spacing the PSR implementation to prevent plugin clashes
 
 ### 1.8 — 2026-04-30
 
