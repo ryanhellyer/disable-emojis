@@ -43,8 +43,15 @@ cp -r build/psr/container vendor/psr/container
 cp -r build/inpsyde/modularity vendor/inpsyde/modularity
 
 echo "=== Generating autoloader ==="
+COMPOSER_INIT=$(grep -oP 'ComposerAutoloaderInit\w+' vendor/autoload.php | head -1)
+
 cat > vendor/autoload.php << 'AUTOLOAD'
 <?php
+
+require_once __DIR__ . '/composer/autoload_real.php';
+AUTOLOAD
+echo "\\${COMPOSER_INIT}::getLoader();" >> vendor/autoload.php
+cat >> vendor/autoload.php << 'AUTOLOAD'
 
 spl_autoload_register(static function (string $class): void {
     $prefixes = [
