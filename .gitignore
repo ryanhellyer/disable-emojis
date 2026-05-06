@@ -8,3 +8,4 @@ Thumbs.db
 .phpcs-cache
 node_modules/
 build/
+disable-emojis.zip
