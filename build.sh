@@ -1,14 +1,18 @@
 #!/bin/bash
 set -euo pipefail
 
-echo "Select build mode:"
-echo "  1) Dev - build scoped deps into vendor/"
-echo "  2) Prod - build scoped deps, create zip, cleanup"
-read -rp "Choice [1-2]: " CHOICE
+if [ $# -eq 1 ]; then
+    CHOICE="$1"
+else
+    echo "Select build mode:"
+    echo "  1) Dev - build scoped deps into vendor/"
+    echo "  2) Prod - build scoped deps, create zip, cleanup"
+    read -rp "Choice [1-2]: " CHOICE
+fi
 
 case "$CHOICE" in
-    1) MODE="dev" ;;
-    2) MODE="prod" ;;
+    1|dev) MODE="dev" ;;
+    2|prod) MODE="prod" ;;
     *) echo "Invalid choice"; exit 1 ;;
 esac
 
