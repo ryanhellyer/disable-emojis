@@ -28,16 +28,8 @@ composer generate-readme
 echo "=== Cleaning build directory ==="
 rm -rf build
 
-if [ "$MODE" = "prod" ]; then
-    echo "=== Removing vendor directory ==="
-    rm -rf vendor
-
-    echo "=== Installing production dependencies ==="
-    composer install --no-dev
-fi
-
 echo "=== Running PHP-Scoper ==="
-PHP_SCOPER="$(command -v php-scoper || echo '/usr/local/bin/php-scoper')"
+PHP_SCOPER="$(command -v php-scoper || echo './vendor/bin/php-scoper')"
 $PHP_SCOPER add-prefix --output-dir=build --force
 
 echo "=== Replacing vendor files with scoped versions ==="
@@ -89,7 +81,12 @@ if [ "$MODE" = "prod" ]; then
     cp readme.txt "$PLUGIN_DIR/" 2>/dev/null || true
     cp license.txt "$PLUGIN_DIR/" 2>/dev/null || true
     cp -r src "$PLUGIN_DIR/"
-    cp -r vendor "$PLUGIN_DIR/"
+
+    mkdir -p "$PLUGIN_DIR/vendor"
+    cp -r vendor/psr "$PLUGIN_DIR/vendor/psr"
+    cp -r vendor/inpsyde "$PLUGIN_DIR/vendor/inpsyde"
+    cp -r vendor/composer "$PLUGIN_DIR/vendor/composer"
+    cp vendor/autoload.php "$PLUGIN_DIR/vendor/autoload.php"
 
     cd "$PLUGIN_DIR"
     zip -r ../../disable-emojis.zip . -x ".*"
@@ -99,8 +96,9 @@ if [ "$MODE" = "prod" ]; then
     rm -rf build
 
     echo "=== Production zip created: disable-emojis.zip ==="
-else
-    echo "=== Dev build complete ==="
-    echo "vendor/ now has scoped dependencies."
-    echo "Run 'composer install' to restore original dev dependencies."
+    exit 0
 fi
+
+echo "=== Dev build complete ==="
+echo "vendor/ now has scoped dependencies."
+echo "Run 'composer install' to restore original dev dependencies."
