@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace RyanHellyer\DisableEmojis\Tests;
 
 use PHPUnit\Framework\TestCase;
-use Psr\Container\ContainerInterface;
+use RyanHellyer\DisableEmojis\Vendor\Psr\Container\ContainerInterface;
 use RyanHellyer\DisableEmojis\EmojiModule;
 
 class EmojiModuleTest extends TestCase

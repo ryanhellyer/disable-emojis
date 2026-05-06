@@ -51,4 +51,12 @@ if (! function_exists('apply_filters')) {
     }
 }
 
-require_once __DIR__ . '/../vendor/autoload.php';
+$scopedAutoloader = __DIR__ . '/../build/vendor/autoload.php';
+if (file_exists($scopedAutoloader)) {
+    require_once $scopedAutoloader;
+}
+
+$vendorAutoloader = __DIR__ . '/../vendor/autoload.php';
+if (file_exists($vendorAutoloader)) {
+    require_once $vendorAutoloader;
+}

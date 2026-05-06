@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace RyanHellyer\DisableEmojis;
 
-use Inpsyde\Modularity\Module\ExecutableModule;
-use Psr\Container\ContainerInterface;
+use RyanHellyer\DisableEmojis\Vendor\Inpsyde\Modularity\Module\ExecutableModule;
+use RyanHellyer\DisableEmojis\Vendor\Psr\Container\ContainerInterface;
 
 class EmojiModule implements ExecutableModule
 {
