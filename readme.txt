@@ -4,7 +4,7 @@ Tags: emojis, gdpr, disable, performance
 Donate link: https://geek.hellyer.kiwi/donate/
 Requires at least: 4.8
 Tested up to: 7.0
-Stable tag: 1.8
+Stable tag: 1.9
 License: GPLv2 or later
 
 Disable the WordPress emoji functionality to improve performance and privacy.
@@ -82,6 +82,9 @@ Yes. Text-based emoticons like `:)` and `:D` will continue to work as they alway
 It does not connect to any external servers or send any data. It removes the DNS prefetch to WordPress.org's emoji CDN. See the GDPR section above for details.
 
 == Changelog ==
+
+= 1.9 (2026-05-06) =
+* Name spacing the PSR implementation to prevent plugin clashes
 
 = 1.8 (2026-04-30) =
 * Refactor for modern PHP standards

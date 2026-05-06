@@ -117,6 +117,10 @@ This plugin does not send any data to external servers. It disables DNS prefetch
 
 ## Changelog
 
+### 1.9 — 2026-05-06
+
+* Name spacing the PSR implementation to prevent plugin clashes
+
 ### 1.8 — 2026-04-30
 
 * Refactor for modern PHP standards
