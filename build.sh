@@ -14,6 +14,10 @@ esac
 
 echo "=== Mode: $MODE ==="
 
+echo "=== Ensuring dependencies are installed ==="
+rm -rf vendor
+composer install
+
 echo "=== Generating README.md ==="
 composer generate-readme
 
@@ -82,10 +86,8 @@ if [ "$MODE" = "prod" ]; then
 
     echo "=== Cleaning up ==="
     rm -rf build
-    rm -rf vendor
 
     echo "=== Production zip created: disable-emojis.zip ==="
-    echo "vendor/ was removed. Run 'composer install' to restore dev dependencies."
 else
     echo "=== Dev build complete ==="
     echo "vendor/ now has scoped dependencies."

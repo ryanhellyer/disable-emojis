@@ -8,7 +8,8 @@ Disable the WordPress emoji functionality to improve performance and privacy.
 The plugin uses:
 
 - **PSR-4 autoloading** — classes in `src/` are autoloaded via Composer under the `RyanHellyer\DisableEmojis` namespace.
-- **Inpsyde Modularity** — the plugin is structured as a module implementing `ExecutableModule`, bootstrapped via the library's `Package` class.
+- **Inpsyde Modularity** — the plugin is structured as a module implementing
+  `ExecutableModule`, bootstrapped via the library's `Package` class.
 
 ```
 ├── .github/workflows/ci.yml     # GitHub Actions CI
@@ -85,7 +86,8 @@ All code uses `declare(strict_types=1)` and follows PSR-12.
    composer phpstan
    ```
 
-5. Run `./build.sh` to build scoped vendor dependencies and regenerate this file (required when testing alongside plugins that bundle their own PSR-11 container)
+5. Run `./build.sh` to build scoped vendor dependencies and regenerate this file
+   (required when testing alongside plugins that bundle their own PSR-11 container)
 6. Submit a pull request
 
 ## Description
