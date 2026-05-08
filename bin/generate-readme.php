@@ -96,21 +96,19 @@ $architecture = '## Architecture
 The plugin uses:
 
 - **PSR-4 autoloading** — classes in `src/` are autoloaded via Composer under the `RyanHellyer\DisableEmojis` namespace.
-- **Inpsyde Modularity** — the plugin is structured as a module implementing
-  `ExecutableModule`, bootstrapped via the library\'s `Package` class.
+- **Zero runtime dependencies** — the plugin has no third-party runtime dependencies.
 
 ```
 ├── .github/workflows/ci.yml     # GitHub Actions CI
 ├── bin/generate-readme.php       # README generator
-├── build.sh                      # Build script for scoped vendor dependencies
 ├── composer.json
-├── disable-emojis.php            # Plugin entry point, boots Modularity Package
+├── disable-emojis.php            # Plugin entry point
 ├── phpcs.xml.dist                # PHP_CodeSniffer configuration
 ├── phpstan.neon                  # PHPStan configuration
 ├── readme.txt                    # WordPress.org plugin readme
 ├── README.md
 ├── src/
-│   └── EmojiModule.php           # Module implementing ExecutableModule
+│   └── EmojiModule.php           # Core emoji disabling logic
 └── tests/
     ├── EmojiModuleTest.php       # Unit tests
     └── bootstrap.php             # WordPress function stubs
@@ -144,9 +142,7 @@ $contributing = '## Contributing
    composer phpstan
    ```
 
-5. Run `./build.sh` to build scoped vendor dependencies and regenerate this file
-   (required when testing alongside plugins that bundle their own PSR-11 container)
-6. Submit a pull request
+5. Submit a pull request
 
 ';
 

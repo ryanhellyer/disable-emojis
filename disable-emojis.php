@@ -30,18 +30,6 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 
 declare(strict_types=1);
 
-use RyanHellyer\DisableEmojis\Vendor\Inpsyde\Modularity\Package;
-use RyanHellyer\DisableEmojis\Vendor\Inpsyde\Modularity\Properties\PluginProperties;
-use RyanHellyer\DisableEmojis\EmojiModule;
-
-$autoloader = __DIR__ . '/vendor/autoload.php';
-if (file_exists($autoloader)) {
-    require_once $autoloader;
-}
-
 require_once __DIR__ . '/src/EmojiModule.php';
 
-$properties = PluginProperties::new(__FILE__);
-$package = Package::new($properties);
-$package->addModule(new EmojiModule());
-$package->boot();
+new \RyanHellyer\DisableEmojis\EmojiModule();

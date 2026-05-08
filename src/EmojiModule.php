@@ -4,20 +4,11 @@ declare(strict_types=1);
 
 namespace RyanHellyer\DisableEmojis;
 
-use RyanHellyer\DisableEmojis\Vendor\Inpsyde\Modularity\Module\ExecutableModule;
-use RyanHellyer\DisableEmojis\Vendor\Psr\Container\ContainerInterface;
-
-class EmojiModule implements ExecutableModule
+class EmojiModule
 {
-    public function id(): string
-    {
-        return 'disable-emojis';
-    }
-
-    public function run(ContainerInterface $container): bool
+    public function __construct()
     {
         add_action('init', [$this, 'disableEmojis']);
-        return true;
     }
 
     public function disableEmojis(): void
