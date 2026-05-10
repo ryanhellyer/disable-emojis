@@ -4,7 +4,7 @@ Tags: emojis, gdpr, disable, performance
 Donate link: https://geek.hellyer.kiwi/donate/
 Requires at least: 4.8
 Tested up to: 7.0
-Stable tag: 1.9.1
+Stable tag: 1.9.2
 License: GPLv2 or later
 
 Disable the WordPress emoji functionality to improve performance and privacy.
@@ -39,9 +39,6 @@ This plugin does not send any data to external servers. It disables DNS prefetch
 = Architecture =
 
 The plugin uses:
-
-* **PSR-4 autoloading** — classes in `src/` are autoloaded via Composer under the `RyanHellyer\DisableEmojis` namespace.
-* **Inpsyde Modularity** — the plugin is structured as a module implementing `ExecutableModule`, bootstrapped via the library's `Package` class.
 
 = Quality =
 
@@ -83,8 +80,11 @@ It does not connect to any external servers or send any data. It removes the DNS
 
 == Changelog ==
 
+= 1.9.2 (2026-05-10) =
+* Documentation change — removed references to Modularity and PSR-4 autoloading
+
 = 1.9.1 (2026-05-10) =
-* Removed Composer autoloader — plugin loads via require_once instead of the PSR-4 vendor/autoload.php
+* Removed Composer autoloader — plugin loads via require_once instead of the vendor/autoload.php
 
 = 1.9 (2026-05-06) =
 * Name spacing the PSR implementation to prevent plugin clashes

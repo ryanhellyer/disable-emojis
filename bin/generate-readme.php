@@ -95,7 +95,6 @@ $architecture = '## Architecture
 
 The plugin uses:
 
-- **PSR-4 autoloading** — classes in `src/` are autoloaded via Composer under the `RyanHellyer\DisableEmojis` namespace.
 - **Zero runtime dependencies** — the plugin has no third-party runtime dependencies.
 
 ```

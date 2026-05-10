@@ -7,7 +7,6 @@ Disable the WordPress emoji functionality to improve performance and privacy.
 
 The plugin uses:
 
-- **PSR-4 autoloading** — classes in `src/` are autoloaded via Composer under the `RyanHellyer\DisableEmojis` namespace.
 - **Zero runtime dependencies** — the plugin has no third-party runtime dependencies.
 
 ```
@@ -115,9 +114,13 @@ This plugin does not send any data to external servers. It disables DNS prefetch
 
 ## Changelog
 
+### 1.9.2 — 2026-05-10
+
+* Documentation change — removed references to Modularity and PSR-4 autoloading
+
 ### 1.9.1 — 2026-05-10
 
-* Removed Composer autoloader — plugin loads via require_once instead of the PSR-4 vendor/autoload.php
+* Removed Composer autoloader — plugin loads via require_once instead of the vendor/autoload.php
 
 ### 1.9 — 2026-05-06
 
