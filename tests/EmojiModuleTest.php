@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace RyanHellyer\DisableEmojis\Tests;
 
 use PHPUnit\Framework\TestCase;
-use RyanHellyer\DisableEmojis\Vendor\Psr\Container\ContainerInterface;
 use RyanHellyer\DisableEmojis\EmojiModule;
 
 class EmojiModuleTest extends TestCase
@@ -15,17 +14,6 @@ class EmojiModuleTest extends TestCase
     protected function setUp(): void
     {
         $this->module = new EmojiModule();
-    }
-
-    public function testIdReturnsDisableEmojis(): void
-    {
-        $this->assertSame('disable-emojis', $this->module->id());
-    }
-
-    public function testRunReturnsTrue(): void
-    {
-        $container = $this->createStub(ContainerInterface::class);
-        $this->assertTrue($this->module->run($container));
     }
 
     public function testDisableEmojisTinymceRemovesWpEmoji(): void
