@@ -26,7 +26,8 @@
         "cs:fix": "php-cs-fixer fix",
         "phpstan": "phpstan analyse --configuration=phpstan.neon",
         "test": "phpunit",
-        "generate-readme": "php bin/generate-readme.php"
+        "generate-readme": "php bin/generate-readme.php",
+        "dotorg_build": "rm -f disable-emojis.zip && zip -r disable-emojis.zip disable-emojis.php src/ readme.txt license.txt -x '*/.git/*' '*/tests/*' '*/bin/*' '*/vendor/*' 'composer.*' 'phpcs*' 'phpstan*' 'phpunit*' '.php-*' '.git*' '.github/*' README.md"
     },
     "autoload-dev": {
         "psr-4": {
