@@ -36,10 +36,6 @@ Note: Emoticons like `:)` will continue to work as expected.
 
 This plugin does not send any data to external servers. It disables DNS prefetching of emojis within WordPress, which should ensure improved privacy. To determine if your site is GDPR compliant, please seek legal advice. I have done my best to ensure the plugin is 100% GDPR compliant, but I am not a lawyer so cannot guarantee anything.
 
-= Architecture =
-
-The plugin uses:
-
 = Quality =
 
 All code uses `declare(strict_types=1)` and follows PSR-12. The plugin runs the following tooling:
