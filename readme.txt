@@ -52,12 +52,6 @@ All code uses `declare(strict_types=1)` and follows PSR-12. The plugin runs the 
 2. Activate the plugin through the Plugins screen in WordPress
 3. Done! Emoji bloat is automatically removed.
 
-= Composer installation =
-
-If your site uses Composer for dependency management:
-
-    composer require ryanhellyer/disable-emojiis
-
 Visit the [Disable Emojis plugin page](https://geek.hellyer.kiwi/plugins/disable-emojis/) for more information.
 
 == Frequently Asked Questions ==
