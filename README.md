@@ -2,6 +2,8 @@
 
 Disable the WordPress emoji functionality to improve performance and privacy.
 
+**★ 5/5 stars** (108 ratings · 99% 5-star) · **60,000+ active sites** · **1.1M+ total downloads** — *as of May 2026*
+
 
 ## Architecture
 
