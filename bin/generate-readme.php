@@ -151,6 +151,9 @@ $parts = explode("\n## ", $markdown, 2);
 
 $body = $parts[0] . "\n\n";
 
+// Stars/ratings/downloads badge (from WordPress.org plugin stats)
+$body .= "**★ 5/5 stars** (108 ratings · 99% 5-star) · **60,000+ active sites** · **1.1M+ total downloads** — *as of May 2026*\n\n";
+
 // Add architecture after the initial content (before Installation)
 $body .= $architecture;
 

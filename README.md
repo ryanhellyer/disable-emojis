@@ -2,8 +2,8 @@
 
 Disable the WordPress emoji functionality to improve performance and privacy.
 
-**★ 5/5 stars** (108 ratings · 99% 5-star) · **60,000+ active sites** · **1.1M+ total downloads** — *as of May 2026*
 
+**★ 5/5 stars** (108 ratings · 99% 5-star) · **60,000+ active sites** · **1.1M+ total downloads** — *as of May 2026*
 
 ## Architecture
 
@@ -34,14 +34,6 @@ The plugin uses:
 1. Upload the `disable-emojis` folder to `/wp-content/plugins/`, or install via the WordPress plugin installer
 2. Activate the plugin through the Plugins screen in WordPress
 3. Done! Emoji bloat is automatically removed.
-
-### Composer installation
-
-If your site uses Composer for dependency management:
-
-```
-composer require ryanhellyer/disable-emojiis
-```
 
 Visit the [Disable Emojis plugin page](https://geek.hellyer.kiwi/plugins/disable-emojis/) for more information.
 
